@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intent-Based Nearby Place Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="app-title">Intent-Based Nearby Place Recommendation</h1>
+        <p class="tagline">Find nearby places based on what you want to do right now.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Intent Selection Section -->
+        <section class="intent-section">
+            <div class="intent-grid">
+                <button class="intent-card" data-intent="work">
+                    <span class="intent-emoji">💻</span>
+                    <span class="intent-label">Work</span>
+                </button>
+                <button class="intent-card" data-intent="date">
+                    <span class="intent-emoji">❤️</span>
+                    <span class="intent-label">Date</span>
+                </button>
+                <button class="intent-card" data-intent="quick-bite">
+                    <span class="intent-emoji">🍔</span>
+                    <span class="intent-label">Quick Bite</span>
+                </button>
+                <button class="intent-card" data-intent="budget">
+                    <span class="intent-emoji">💸</span>
+                    <span class="intent-label">Budget</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="results-container" id="resultsContainer">
+                <p class="placeholder-text">Select an intent above to see nearby places</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
