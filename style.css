@@ -32,6 +32,58 @@ body {
     font-size: 1.1rem;
     color: #7f8c8d;
     font-weight: 400;
+    margin-bottom: 20px;
+}
+
+/* Location Status */
+.location-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.location-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.location-text {
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.location-status.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.location-status.success .location-text {
+    color: #155724;
+}
+
+.location-status.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.location-status.error .location-text {
+    color: #721c24;
 }
 
 /* Main Content */
@@ -79,6 +131,19 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+}
+
+.intent-card:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.intent-card:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    background: white;
+    color: inherit;
 }
 
 .intent-emoji {

@@ -1,3 +1,6 @@
+// User's current location (will be set after geolocation)
+let userLocation = null;
+
 // Intent to place-type mapping
 // This structure allows easy replacement with real API data later
 const intentMapping = {
@@ -161,8 +164,104 @@ function displayPlaces(places) {
     });
 }
 
+// Update location status display
+function updateLocationStatus(status, message) {
+    const statusElement = document.getElementById('locationStatus');
+    const textElement = statusElement.querySelector('.location-text');
+    
+    // Remove all status classes
+    statusElement.classList.remove('success', 'error');
+    
+    if (status === 'loading') {
+        statusElement.classList.remove('success', 'error');
+        textElement.textContent = message || 'Requesting your location...';
+    } else if (status === 'success') {
+        statusElement.classList.add('success');
+        textElement.textContent = message || 'Location found! Select an intent below.';
+    } else if (status === 'error') {
+        statusElement.classList.add('error');
+        textElement.textContent = message || 'Unable to get your location. Please enable location access.';
+    }
+}
+
+// Get user's location using Geolocation API
+function getUserLocation() {
+    updateLocationStatus('loading', 'Requesting your location...');
+    
+    if (!navigator.geolocation) {
+        updateLocationStatus('error', 'Geolocation is not supported by your browser.');
+        return;
+    }
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+    };
+
+    navigator.geolocation.getCurrentPosition(
+        // Success callback
+        (position) => {
+            userLocation = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy
+            };
+            
+            // Update status
+            updateLocationStatus('success', `Location found! (${userLocation.latitude.toFixed(4)}, ${userLocation.longitude.toFixed(4)})`);
+            
+            // Enable intent buttons
+            enableIntentButtons();
+            
+            // Update placeholder text
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = '<p class="placeholder-text">Select an intent above to see nearby places</p>';
+        },
+        // Error callback
+        (error) => {
+            let errorMessage = 'Unable to get your location. ';
+            
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage += 'Please allow location access and refresh the page.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage += 'Location information is unavailable.';
+                    break;
+                case error.TIMEOUT:
+                    errorMessage += 'Location request timed out. Please try again.';
+                    break;
+                default:
+                    errorMessage += 'An unknown error occurred.';
+                    break;
+            }
+            
+            updateLocationStatus('error', errorMessage);
+        },
+        options
+    );
+}
+
+// Enable intent buttons after location is obtained
+function enableIntentButtons() {
+    const intentCards = document.querySelectorAll('.intent-card');
+    intentCards.forEach(card => {
+        card.disabled = false;
+        card.style.opacity = '1';
+        card.style.pointerEvents = 'auto';
+        card.style.cursor = 'pointer';
+    });
+}
+
 // Handle intent button click
 function handleIntentClick(event) {
+    // Don't proceed if location hasn't been obtained
+    if (!userLocation) {
+        updateLocationStatus('error', 'Please wait for location access...');
+        return;
+    }
+
     const intentCard = event.currentTarget;
     const intent = intentCard.getAttribute('data-intent');
 
@@ -181,6 +280,9 @@ function handleIntentClick(event) {
 
 // Initialize the app
 function init() {
+    // Request user's location first
+    getUserLocation();
+    
     // Add click event listeners to all intent cards
     const intentCards = document.querySelectorAll('.intent-card');
     intentCards.forEach(card => {

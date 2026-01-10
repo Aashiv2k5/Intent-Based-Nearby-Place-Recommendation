@@ -12,6 +12,10 @@
     <header class="header">
         <h1 class="app-title">Intent-Based Nearby Place Recommendation</h1>
         <p class="tagline">Find nearby places based on what you want to do right now.</p>
+        <div class="location-status" id="locationStatus">
+            <span class="location-icon">📍</span>
+            <span class="location-text">Requesting your location...</span>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -19,19 +23,19 @@
         <!-- Intent Selection Section -->
         <section class="intent-section">
             <div class="intent-grid">
-                <button class="intent-card" data-intent="work">
+                <button class="intent-card" data-intent="work" disabled>
                     <span class="intent-emoji">💻</span>
                     <span class="intent-label">Work</span>
                 </button>
-                <button class="intent-card" data-intent="date">
+                <button class="intent-card" data-intent="date" disabled>
                     <span class="intent-emoji">❤️</span>
                     <span class="intent-label">Date</span>
                 </button>
-                <button class="intent-card" data-intent="quick-bite">
+                <button class="intent-card" data-intent="quick-bite" disabled>
                     <span class="intent-emoji">🍔</span>
                     <span class="intent-label">Quick Bite</span>
                 </button>
-                <button class="intent-card" data-intent="budget">
+                <button class="intent-card" data-intent="budget" disabled>
                     <span class="intent-emoji">💸</span>
                     <span class="intent-label">Budget</span>
                 </button>
@@ -41,7 +45,7 @@
         <!-- Results Section -->
         <section class="results-section">
             <div class="results-container" id="resultsContainer">
-                <p class="placeholder-text">Select an intent above to see nearby places</p>
+                <p class="placeholder-text">Waiting for location access...</p>
             </div>
         </section>
     </main>
