@@ -1,0 +1,12 @@
+{
+  "name": "foursquare-intent-finder",
+  "version": "1.0.0",
+  "description": "Find nearby places based on your intent using Foursquare API",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "keywords": ["foursquare", "places", "location"],
+  "author": "",
+  "license": "MIT"
+}

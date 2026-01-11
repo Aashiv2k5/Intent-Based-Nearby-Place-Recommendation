@@ -1,56 +1,55 @@
-<!DOCTYPE html><!-- test change -->
-
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intent-Based Nearby Place Recommendation</title>
+    <title>Find Your Perfect Spot</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <h1 class="app-title">Intent-Based Nearby Place Recommendation</h1>
-        <p class="tagline">Find nearby places based on what you want to do right now.</p>
-        <div class="location-status" id="locationStatus">
-            <span class="location-icon">📍</span>
+    <div class="container">
+        <header>
+            <h1>🗺️ Find Your Perfect Spot</h1>
+            <p class="subtitle">Discover nearby places based on your current mood</p>
+        </header>
+
+        <div id="locationStatus">
             <span class="location-text">Requesting your location...</span>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Intent Selection Section -->
-        <section class="intent-section">
+        <div class="intents-section">
+            <h2 class="section-title">What's your intent?</h2>
             <div class="intent-grid">
-                <button class="intent-card" data-intent="work" disabled>
-                    <span class="intent-emoji">💻</span>
-                    <span class="intent-label">Work</span>
+                <button class="intent-card" data-intent="work">
+                    <div class="intent-icon">💼</div>
+                    <div class="intent-name">Work</div>
                 </button>
-                <button class="intent-card" data-intent="date" disabled>
-                    <span class="intent-emoji">❤️</span>
-                    <span class="intent-label">Date</span>
+                <button class="intent-card" data-intent="date">
+                    <div class="intent-icon">❤️</div>
+                    <div class="intent-name">Date</div>
                 </button>
-                <button class="intent-card" data-intent="quick-bite" disabled>
-                    <span class="intent-emoji">🍔</span>
-                    <span class="intent-label">Quick Bite</span>
+                <button class="intent-card" data-intent="hotels">
+                    <div class="intent-icon">🏨</div>
+                    <div class="intent-name">Hotel Stays</div>
                 </button>
-                <button class="intent-card" data-intent="budget" disabled>
-                    <span class="intent-emoji">💸</span>
-                    <span class="intent-label">Budget</span>
+                <button class="intent-card" data-intent="restaurants">
+                    <div class="intent-icon">🍽️</div>
+                    <div class="intent-name">Restaurants</div>
                 </button>
             </div>
-        </section>
+        </div>
 
-        <!-- Results Section -->
-        <section class="results-section">
-            <div class="results-container" id="resultsContainer">
-                <p class="placeholder-text">Waiting for location access...</p>
+        <div class="results-section">
+            <h2 class="section-title">Results</h2>
+            <div id="resultsContainer">
+                <p class="placeholder-text">Allow location access to get started</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html>
 
+</html>
